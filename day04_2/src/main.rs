@@ -1,7 +1,5 @@
-extern crate permutohedron;
 extern crate itertools;
 
-use std::collections::HashMap;
 use itertools::Itertools;
 
 fn main() {
@@ -10,14 +8,12 @@ fn main() {
     let res = input.lines().map(|line| {
         line.trim()
             .split_whitespace()
+            .map(|word| word.chars().sorted())
+            .sorted()
             .into_iter()
-            .fold(HashMap::new(), |mut hm, word| {
-                let word = word.chars().sorted().into_iter().collect_vec();
-                *hm.entry(word).or_insert(0) += 1;
-                hm
-            })
-            .values()
-            .all(|&amount| amount == 1)
+            .group_by(|word| word.clone())
+            .into_iter()
+            .all(|(_, dupes)| dupes.count() == 1)
     })
     .filter(|&valid| valid)
     .count();

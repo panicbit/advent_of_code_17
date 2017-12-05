@@ -1,4 +1,6 @@
-use std::collections::HashMap;
+extern crate itertools;
+
+use itertools::Itertools;
 
 fn main() {
     let input = include_str!("../input.txt");
@@ -6,13 +8,11 @@ fn main() {
     let res = input.lines().map(|line| {
         line.trim()
             .split_whitespace()
+            .sorted()
             .into_iter()
-            .fold(HashMap::new(), |mut hm, word| {
-                *hm.entry(word).or_insert(0) += 1;
-                hm
-            })
-            .values()
-            .all(|&amount| amount == 1)
+            .group_by(|&word| word)
+            .into_iter()
+            .all(|(_, dupes)| dupes.count() == 1)
     })
     .filter(|&valid| valid)
     .count();
