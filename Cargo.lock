@@ -230,6 +230,9 @@ dependencies = [
 [[package]]
 name = "day05_2"
 version = "0.1.0"
+dependencies = [
+ "aoc 0.1.0",
+]
 
 [[package]]
 name = "day06"
