@@ -1,6 +1,6 @@
 [package]
 authors = ["panicbit <panicbit.dev@gmail.com>"]
-name = "day02"
+name = "day02_2"
 version = "0.1.0"
 
 [dependencies]
