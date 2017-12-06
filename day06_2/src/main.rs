@@ -20,9 +20,7 @@ aoc!(2017, 6, 1, |input| {
         let (bank_index, blocks) = banks.iter().cloned().enumerate().rev().max_by_key(|&(_, n)| n).unwrap();
         banks[bank_index] = 0;
 
-        for i in (0..num_banks).cycle().skip(bank_index+1).take(blocks) {
-            banks[i] += 1;
-        }
+        (0..num_banks).cycle().skip(bank_index+1).take(blocks).for_each(|i| banks[i] += 1);
 
         count += 1;
 
