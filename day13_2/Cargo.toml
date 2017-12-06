@@ -4,4 +4,4 @@ name = "day13_2"
 version = "0.1.0"
 
 [dependencies.aoc]
-path = "../aoc"
+git = "https://github.com/panicbit/aoc"

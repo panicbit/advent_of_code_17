@@ -3,8 +3,5 @@ authors = ["panicbit <panicbit.dev@gmail.com>"]
 name = "day05"
 version = "0.1.0"
 
-[dependencies]
-
 [dependencies.aoc]
-optional = false
-path = "../aoc"
+git = "https://github.com/panicbit/aoc"

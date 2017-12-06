@@ -15,7 +15,7 @@ for day in `seq -f "%02.f" $start $end`; do
         cargo new --bin "$project"
         (
             cd "$project"
-            cargo add aoc --path ../aoc
+            cargo add aoc --git 'https://github.com/panicbit/aoc'
             cat << EOF > src/main.rs
 #[macro_use]
 extern crate aoc;
