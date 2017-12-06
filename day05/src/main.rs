@@ -1,5 +1,7 @@
-fn main() {
-    let input = include_str!("../input.txt");
+#[macro_use]
+extern crate aoc;
+
+aoc!(2017, 5, 1, |input| {
     let mut ip: i32 = 0;
     let mut steps = 0;
     let mut instructions = input
@@ -13,5 +15,5 @@ fn main() {
         *instruction += 1;
     }
 
-    println!("{}", steps);
-}
+    steps
+});
