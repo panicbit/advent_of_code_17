@@ -11,32 +11,19 @@ aoc!(2017, 6, 1, |input| {
         .split('\t')
         .map(|n| n.parse::<usize>().unwrap())
         .collect::<Vec<_>>();
+    let num_banks = banks.len();
 
-    visited.insert(banks.clone());
+    while !visited.contains(&banks) {
+        visited.insert(banks.clone());
 
-    loop {
-        let max = *banks.iter().max().unwrap();
-        let bank_index = banks.iter().position(|&n| n == max).unwrap();
-        let mut blocks = banks[bank_index];
-        let num_banks = banks.len();
+        let (bank_index, blocks) = banks.iter().cloned().enumerate().rev().max_by_key(|&(_, n)| n).unwrap();
         banks[bank_index] = 0;
 
-        for i in (0..num_banks).cycle().skip(bank_index+1) {
-            if blocks == 0 {
-                break;
-            }
-
+        for i in (0..num_banks).cycle().skip(bank_index+1).take(blocks) {
             banks[i] += 1;
-            blocks -= 1;
         }
 
         count += 1;
-
-        if visited.contains(&banks) {
-            break;
-        }
-
-        visited.insert(banks.clone());
     }
 
     count
