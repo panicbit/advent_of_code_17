@@ -314,6 +314,7 @@ name = "day07"
 version = "0.1.0"
 dependencies = [
  "aoc 0.1.0 (git+https://github.com/panicbit/aoc)",
+ "regex 0.2.3 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
