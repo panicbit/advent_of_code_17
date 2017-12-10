@@ -10,11 +10,9 @@ aoc!(2017, 10, 2, |input| {
     let mut skip_size = 0;
     let lengths: Vec<usize> = input
         .trim()
-        .as_bytes()
-        .iter()
-        .cloned()
-        .chain([17, 31, 73, 47, 23].iter().cloned())
+        .bytes()
         .map(|n| n as usize)
+        .chain([17, 31, 73, 47, 23].iter().cloned())
         .collect();
 
     for _ in 0..64 {
