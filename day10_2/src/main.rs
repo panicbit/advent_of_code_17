@@ -24,18 +24,16 @@ aoc!(2017, 10, 2, |input| {
         }
     }
 
-    let dense_hash = numbers
+    numbers
         .iter().cloned()
         .chunks(16).into_iter()
         .take(16)
         .map(|block| block.fold1(|a, b| a ^ b).unwrap())
         .map(|n| format!("{:02x}", n))
-        .collect::<String>();
-
-    dense_hash
+        .collect::<String>()
 });
 
-fn reverse(data: &mut Vec<i32>, mut start: usize, len: usize) {
+fn reverse<T>(data: &mut Vec<T>, mut start: usize, len: usize) {
     if len == 0 {
         return;
     }
