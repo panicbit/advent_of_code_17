@@ -2,15 +2,7 @@
 extern crate aoc;
 
 aoc!(2017, 13, 2, |input| {
-    let mut layers = input.lines().map(|line| {
-        let mut line = line.trim().split(": ");
-        Layer {
-            depth: line.next().unwrap().parse().unwrap(),
-            range: line.next().unwrap().parse().unwrap(),
-            scanner_pos: 0,
-            scanner_dir: 1,
-        }
-    }).collect::<Vec<_>>();
+    let mut layers = input.lines().map(Layer::from_str).collect::<Vec<_>>();
 
     let mut delay = 0;
     while gets_caught(layers.clone()) {
@@ -25,11 +17,8 @@ fn gets_caught(mut layers: Vec<Layer>) -> bool {
     let mut pos = 0;
     for i in 0..layers.len() {
         while pos <= layers[i].depth {
-            {
-                let layer = &layers[i];
-                if pos == layer.depth && layer.scanner_pos == 0 {
-                    return true;
-                }
+            if layers[i].has_caught(pos) {
+                return true;
             }
 
             advance_scanners(&mut layers);
@@ -43,19 +32,46 @@ fn gets_caught(mut layers: Vec<Layer>) -> bool {
 
 fn advance_scanners(layers: &mut Vec<Layer>) {
     for layer in layers {
-        if (layer.scanner_dir < 0 && layer.scanner_pos == 0)
-        || (layer.scanner_dir > 0 && layer.scanner_pos + 1 == layer.range) {
-            layer.scanner_dir *= -1;
-        }
-
-        layer.scanner_pos += layer.scanner_dir;
+        layer.advance_scanner();
     }
 }
 
-#[derive(Debug,Copy,Clone)]
+#[derive(Debug,Clone)]
 struct Layer {
     depth: isize,
     range: isize,
-    scanner_pos: isize,
-    scanner_dir: isize,
+    scanner_step: isize,
+}
+
+impl Layer {
+    fn from_str(line: &str) -> Self {
+        let mut line = line.trim().split(": ");
+        let depth = line.next().unwrap().parse().unwrap();
+        let range = line.next().unwrap().parse().unwrap();
+
+        Layer {
+            depth,
+            range,
+            scanner_step: 0,
+        }
+    }
+
+    fn advance_scanner(&mut self) {
+        self.scanner_step += 1;
+    }
+
+    fn scanner_pos(&self) -> isize {
+        let range = self.range;
+        let cycle = if range == 1 { 1 } else { 2 * (range-1) };
+        let step = self.scanner_step % cycle;
+        let modstep = step % range;
+        let if_down = step / range % 2;
+        let if_up = 1 - if_down;
+
+        if_up * step + if_down * (range - modstep - 2)
+    }
+
+    fn has_caught(&self, pos: isize) -> bool {
+        pos == self.depth && self.scanner_pos() == 0
+    }
 }
