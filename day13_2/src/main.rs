@@ -15,9 +15,8 @@ aoc!(2017, 13, 2, |input| {
 fn gets_caught(layers: &mut Vec<Layer>, delay: isize) -> bool {
     for layer in layers {
         let step = layer.depth() + delay;
-        layer.set_scanner_step(step);
 
-        if layer.scanner_pos() == 0 {
+        if layer.scanner_at_top(step) {
             return true;
         }
     }
@@ -29,7 +28,6 @@ fn gets_caught(layers: &mut Vec<Layer>, delay: isize) -> bool {
 struct Layer {
     depth: isize,
     range: isize,
-    scanner_step: isize,
 }
 
 impl Layer {
@@ -41,23 +39,13 @@ impl Layer {
         Layer {
             depth,
             range,
-            scanner_step: 0,
         }
     }
 
-    fn scanner_pos(&self) -> isize {
+    fn scanner_at_top(&self, step: isize) -> bool {
         let range = self.range;
         let cycle = if range == 1 { 1 } else { 2 * (range-1) };
-        let step = self.scanner_step % cycle;
-        let modstep = step % range;
-        let if_down = step / range % 2;
-        let if_up = 1 - if_down;
-
-        if_up * step + if_down * (range - modstep - 2)
-    }
-
-    fn set_scanner_step(&mut self, step: isize) {
-        self.scanner_step = step;
+        step % cycle == 0
     }
 
     fn depth(&self) -> isize {
