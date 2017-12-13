@@ -5,35 +5,24 @@ aoc!(2017, 13, 2, |input| {
     let mut layers = input.lines().map(Layer::from_str).collect::<Vec<_>>();
 
     let mut delay = 0;
-    while gets_caught(layers.clone()) {
-        advance_scanners(&mut layers);
+    while gets_caught(&mut layers, delay) {
         delay += 1;
     }
 
     delay
 });
 
-fn gets_caught(mut layers: Vec<Layer>) -> bool {
-    let mut pos = 0;
-    for i in 0..layers.len() {
-        while pos <= layers[i].depth {
-            if layers[i].has_caught(pos) {
-                return true;
-            }
+fn gets_caught(layers: &mut Vec<Layer>, delay: isize) -> bool {
+    for layer in layers {
+        let step = layer.depth() + delay;
+        layer.set_scanner_step(step);
 
-            advance_scanners(&mut layers);
-
-            pos += 1;
+        if layer.scanner_pos() == 0 {
+            return true;
         }
     }
 
     false
-}
-
-fn advance_scanners(layers: &mut Vec<Layer>) {
-    for layer in layers {
-        layer.advance_scanner();
-    }
 }
 
 #[derive(Debug,Clone)]
@@ -56,10 +45,6 @@ impl Layer {
         }
     }
 
-    fn advance_scanner(&mut self) {
-        self.scanner_step += 1;
-    }
-
     fn scanner_pos(&self) -> isize {
         let range = self.range;
         let cycle = if range == 1 { 1 } else { 2 * (range-1) };
@@ -71,7 +56,11 @@ impl Layer {
         if_up * step + if_down * (range - modstep - 2)
     }
 
-    fn has_caught(&self, pos: isize) -> bool {
-        pos == self.depth && self.scanner_pos() == 0
+    fn set_scanner_step(&mut self, step: isize) {
+        self.scanner_step = step;
+    }
+
+    fn depth(&self) -> isize {
+        self.depth
     }
 }
