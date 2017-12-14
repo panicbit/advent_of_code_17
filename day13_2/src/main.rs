@@ -2,17 +2,17 @@
 extern crate aoc;
 
 aoc!(2017, 13, 2, |input| {
-    let mut layers = input.lines().map(Layer::from_str).collect::<Vec<_>>();
+    let layers = input.lines().map(Layer::from_str).collect::<Vec<_>>();
 
     let mut delay = 0;
-    while gets_caught(&mut layers, delay) {
+    while gets_caught(&layers, delay) {
         delay += 1;
     }
 
     delay
 });
 
-fn gets_caught(layers: &mut Vec<Layer>, delay: isize) -> bool {
+fn gets_caught(layers: &Vec<Layer>, delay: isize) -> bool {
     for layer in layers {
         let step = layer.depth() + delay;
 
