@@ -23,7 +23,7 @@ aoc!(2017, 16, 2, |input| {
     programs.into_iter().collect::<String>()
 });
 
-fn run_dance_show(programs: &mut Vec<char>, moves: &Vec<Move>) {
+fn run_dance_show(programs: &mut Vec<char>, moves: &[Move]) {
     for mov in moves {
         mov.execute(programs);
     }
