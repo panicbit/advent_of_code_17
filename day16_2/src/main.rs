@@ -10,26 +10,24 @@ aoc!(2017, 16, 2, |input| {
     let mut cycle_size = 0;
     
     let mut programs = inital_programs.clone();
-    loop {
+    while programs != inital_programs || cycle_size == 0 {
         cycle_size += 1;
-        for mov in &moves {
-            mov.execute(&mut programs);
-        }
-
-        if programs == inital_programs {
-            break;
-        }
+        run_dance_show(&mut programs, &moves);
     }
 
     let num_iters = 1_000_000_000 % cycle_size;
     for _ in 0..num_iters {
-        for mov in &moves {
-            mov.execute(&mut programs);
-        }
+        run_dance_show(&mut programs, &moves);
     }
 
     programs.into_iter().collect::<String>()
 });
+
+fn run_dance_show(programs: &mut Vec<char>, moves: &Vec<Move>) {
+    for mov in moves {
+        mov.execute(programs);
+    }
+}
 
 #[derive(Copy,Clone,PartialEq,Eq,Hash)]
 enum Move {
