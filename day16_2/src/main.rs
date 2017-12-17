@@ -2,15 +2,15 @@
 extern crate aoc;
 
 aoc!(2017, 16, 2, |input| {
-    let inital_programs = "abcdefghijklmnop".chars().collect::<Vec<_>>();
+    let initial_programs = "abcdefghijklmnop".chars().collect::<Vec<_>>();
     let moves = input.trim()
         .split(',')
         .map(Move::from_str)
         .collect::<Vec<Move>>();
     let mut cycle_size = 0;
     
-    let mut programs = inital_programs.clone();
-    while programs != inital_programs || cycle_size == 0 {
+    let mut programs = initial_programs.clone();
+    while programs != initial_programs || cycle_size == 0 {
         cycle_size += 1;
         run_dance_show(&mut programs, &moves);
     }
