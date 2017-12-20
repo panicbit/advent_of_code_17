@@ -1,8 +1,6 @@
 #[macro_use]
 extern crate aoc;
 
-use std::ops::Add;
-
 aoc!(2017, 20, 1, |input| {
     let particles = input.lines().map(Particle::from_str).collect::<Vec<_>>();
 
@@ -45,17 +43,6 @@ struct Vec3 {
 impl Vec3 {
     fn dist(self) -> isize {
         self.x.abs() + self.y.abs() + self.z.abs()
-    }
-}
-
-impl Add for Vec3 {
-    type Output = Self;
-
-    fn add(mut self, other: Self) -> Self {
-        self.x += other.x;
-        self.y += other.y;
-        self.z += other.z;
-        self
     }
 }
 
