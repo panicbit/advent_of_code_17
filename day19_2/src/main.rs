@@ -8,7 +8,7 @@ use std::iter::once;
 aoc!(2017, 19, 2, |input| {
     let maze = input.parse::<Maze>().unwrap();
 
-    MazeIter::new(&maze).filter(|ch| ch.is_alphabetic()).count()
+    MazeIter::new(&maze).count()
 });
 
 struct MazeIter<'a> {
