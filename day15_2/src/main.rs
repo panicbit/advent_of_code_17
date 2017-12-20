@@ -11,6 +11,6 @@ aoc!(2017, 15, 2, |input| {
 
     gen_a.zip(gen_b)
     .take(5_000_000)
-    .filter(|&(a, b)| (a & 0xFFFF) == (b & 0xFFFF))
+    .filter(|&(a, b)| a as u16 == b as u16)
     .count()
 });
