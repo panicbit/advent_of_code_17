@@ -123,7 +123,7 @@ impl Cpu {
 }
 
 fn break_on_pc_oob(cpu: &Cpu) -> bool {
-    cpu.pc() < 0 && cpu.code().get(cpu.pc() as usize).is_some()
+    cpu.pc() < 0 || cpu.code().get(cpu.pc() as usize).is_none()
 }
 
 #[derive(Copy,Clone,PartialEq,Eq)]
