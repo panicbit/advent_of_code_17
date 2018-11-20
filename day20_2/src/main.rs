@@ -1,5 +1,3 @@
-#![feature(option_filter)]
-
 #[macro_use]
 extern crate aoc;
 extern crate itertools;
