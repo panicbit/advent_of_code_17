@@ -15,15 +15,14 @@ for day in `seq -f "%02.f" $start $end`; do
         cargo new --bin "$project"
         (
             cd "$project"
-            cargo add aoc --git 'https://github.com/panicbit/aoc'
+            cargo add aoc
             cat << EOF > src/main.rs
-#[macro_use]
-extern crate aoc;
+#[macro_use] extern crate aoc;
 
-aoc!($event, $day, $part, |input| {
-    unimplemented!();
-    0
-});
+#[aoc($event, $day, $part)]
+fn main() -> i32 {
+    unimplemented!()
+}
 EOF
         )
     done
