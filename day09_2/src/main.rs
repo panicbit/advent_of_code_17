@@ -3,7 +3,8 @@ extern crate aoc;
 
 use self::Mode::*;
 
-aoc!(2017, 09, 2, |input| {
+#[aoc(2017, 09, 2)]
+fn main(input: &str) -> i32 {
     let mut garbage = 0;
     let mut chars = input.chars();
     let mut mode = Normal;
@@ -19,7 +20,7 @@ aoc!(2017, 09, 2, |input| {
     }
 
     garbage
-});
+}
 
 #[derive(Copy,Clone)]
 enum Mode {

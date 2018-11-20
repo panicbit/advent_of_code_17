@@ -11,7 +11,8 @@ use value::Value;
 use op::Op;
 use cpu::Cpu;
 
-aoc!(2017, 18, 2, |input| {
+#[aoc(2017, 18, 2)]
+fn main(input: &str) -> usize {
     let code = parse_code(input);
     let mut cpu0 = Cpu::with_code(code.clone(), 0);
     let mut cpu1 = Cpu::with_code(code        , 1);
@@ -41,7 +42,7 @@ aoc!(2017, 18, 2, |input| {
     }
 
     count
-});
+}
 
 fn parse_code(input: &str) -> Vec<Op> {
     input

@@ -4,7 +4,8 @@ extern crate itertools;
 
 use itertools::Itertools;
 
-aoc!(2017, 10, 2, |input| {
+#[aoc(2017, 10, 2)]
+fn main(input: &str) -> String {
     let mut numbers: Vec<i32> = (0..256).collect();
     let mut current_position = 0;
     let mut skip_size = 0;
@@ -31,7 +32,7 @@ aoc!(2017, 10, 2, |input| {
         .map(|block| block.fold1(|a, b| a ^ b).unwrap())
         .map(|n| format!("{:02x}", n))
         .collect::<String>()
-});
+}
 
 fn reverse<T>(data: &mut Vec<T>, mut start: usize, len: usize) {
     if len == 0 {

@@ -1,7 +1,8 @@
 #[macro_use]
 extern crate aoc;
 
-aoc!(2017, 17, 1, |input| {
+#[aoc(2017, 17, 1)]
+fn main(input: &str) -> usize {
     let dist = input.trim().parse::<usize>().unwrap();
     let mut current_pos = 0;
     let mut buf = vec![0];
@@ -12,4 +13,4 @@ aoc!(2017, 17, 1, |input| {
     }
 
     buf[(current_pos + 1) % buf.len()]
-});
+}

@@ -1,7 +1,8 @@
 #[macro_use]
 extern crate aoc;
 
-aoc!(2017, 16, 2, |input| {
+#[aoc(2017, 16, 2)]
+fn main(input: &str) -> String {
     let initial_programs = "abcdefghijklmnop".chars().collect::<Vec<_>>();
     let moves = input.trim()
         .split(',')
@@ -21,7 +22,7 @@ aoc!(2017, 16, 2, |input| {
     }
 
     programs.into_iter().collect::<String>()
-});
+}
 
 fn run_dance_show(programs: &mut Vec<char>, moves: &[Move]) {
     for mov in moves {

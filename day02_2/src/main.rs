@@ -1,9 +1,11 @@
 extern crate itertools;
+#[macro_use] extern crate aoc;
 
 use itertools::Itertools;
 use std::cmp::max;
 
-fn main() {
+#[aoc(2017, 2, 2)]
+fn main(input: &str) -> i32 {
     let input = include_str!("../input.txt");
 
     let res =
@@ -21,7 +23,7 @@ fn main() {
         )
         .sum::<i32>();
     
-    println!("{}", res);
+    res
 }
 
 fn parse_i32(str: &str) -> i32 {

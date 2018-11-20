@@ -3,7 +3,8 @@ extern crate aoc;
 
 use std::collections::HashMap;
 
-aoc!(2017, 22, 2, |input| {
+#[aoc(2017, 22, 2)]
+fn main(input: &str) -> usize {
     let width = input.lines().next().map(str::len).unwrap_or(0) as isize;
     let height = input.lines().count() as isize;
 
@@ -26,7 +27,7 @@ aoc!(2017, 22, 2, |input| {
     }
 
     carrier.infected
-});
+}
 
 struct Carrier {
     x: isize,

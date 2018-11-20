@@ -1,7 +1,8 @@
 #[macro_use]
 extern crate aoc;
 
-aoc!(2017, 5, 1, |input| {
+#[aoc(2017, 5, 1)]
+fn main(input: &str) -> usize {
     let mut ip: i32 = 0;
     let mut steps = 0;
     let mut instructions = input
@@ -16,4 +17,4 @@ aoc!(2017, 5, 1, |input| {
     }
 
     steps
-});
+}

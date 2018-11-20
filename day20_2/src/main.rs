@@ -8,7 +8,8 @@ use std::ops::{Sub,AddAssign};
 use std::iter::once;
 use itertools::Itertools;
 
-aoc!(2017, 20, 2, |input| {
+#[aoc(2017, 20, 2)]
+fn main(input: &str) -> usize {
     let mut particles = input.lines().map(Particle::from_str).collect_vec();
 
     loop {
@@ -46,7 +47,7 @@ aoc!(2017, 20, 2, |input| {
     }
 
     particles.len()
-});
+}
 
 #[derive(Debug, Copy, Clone)]
 struct Particle {

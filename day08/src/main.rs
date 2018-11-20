@@ -3,7 +3,8 @@ extern crate aoc;
 
 use std::collections::HashMap;
 
-aoc!(2017, 08, 1, |input| {
+#[aoc(2017, 08, 1)]
+fn main(input: &str) -> i32 {
     let instructions = input
         .lines()
         .map(Instruction::from_str)
@@ -15,7 +16,7 @@ aoc!(2017, 08, 1, |input| {
     }
 
     *regs.values().max().unwrap()
-});
+}
 
 struct Instruction<'a> {
     register: &'a str,

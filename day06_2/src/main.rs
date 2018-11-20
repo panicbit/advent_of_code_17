@@ -3,7 +3,8 @@ extern crate aoc;
 
 use std::collections::HashSet;
 
-aoc!(2017, 6, 1, |input| {
+#[aoc(2017, 6, 1)]
+fn main(input: &str) -> usize {
     let mut count = 0;
     let mut visited = HashSet::new();
     let mut banks = input
@@ -32,4 +33,4 @@ aoc!(2017, 6, 1, |input| {
     }
 
     count
-});
+}

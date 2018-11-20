@@ -1,7 +1,10 @@
+#[macro_use] extern crate aoc;
+
 use self::Direction::*;
 
-fn main() {
-    let input = 325489;
+#[aoc(2017, 3, 1)]
+fn main(input: &str) -> i32 {
+    let input = input.parse::<i32>().unwrap();
     let mut dir = Direction::E;
     let mut x: i32 = 0;
     let mut y: i32 = 0;
@@ -22,8 +25,7 @@ fn main() {
             step += 1;
 
             if step >= input {
-                println!("{}", x.abs() + y.abs());
-                return;
+                return x.abs() + y.abs();
             }
         }
 

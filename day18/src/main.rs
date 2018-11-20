@@ -11,7 +11,8 @@ use value::Value;
 use op::Op;
 use cpu::Cpu;
 
-aoc!(2017, 18, 1, |input| {
+#[aoc(2017, 18, 1)]
+fn main(input: &str) -> isize {
     let code = parse_code(input);
     let mut cpu = Cpu::with_code(code);
     cpu.add_breakpoint(|cpu| cpu.recovered().is_some());
@@ -19,7 +20,7 @@ aoc!(2017, 18, 1, |input| {
     cpu.run();
 
     cpu.recovered().unwrap()
-});
+}
 
 fn parse_code(input: &str) -> Vec<Op> {
     input

@@ -1,7 +1,8 @@
 #[macro_use]
 extern crate aoc;
 
-aoc!(2017, 17, 2, |input| {
+#[aoc(2017, 17, 2)]
+fn main(input: &str) -> u64 {
     let dist = input.trim().parse::<usize>().unwrap();
     let mut current_pos = 0;
     let mut val1 = 0;
@@ -16,4 +17,4 @@ aoc!(2017, 17, 2, |input| {
     }
 
     val1
-});
+}

@@ -4,7 +4,8 @@ extern crate aoc;
 use std::collections::HashMap;
 use std::cmp;
 
-aoc!(2017, 08, 2, |input| {
+#[aoc(2017, 08, 2)]
+fn main(input: &str) -> i32 {
     let instructions = input
         .lines()
         .map(Instruction::from_str)
@@ -20,7 +21,7 @@ aoc!(2017, 08, 2, |input| {
     }
 
     max
-});
+}
 
 struct Instruction<'a> {
     register: &'a str,

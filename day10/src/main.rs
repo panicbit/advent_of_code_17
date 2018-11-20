@@ -1,7 +1,8 @@
 #[macro_use]
 extern crate aoc;
 
-aoc!(2017, 10, 1, |input| {
+#[aoc(2017, 10, 1)]
+fn main(input: &str) -> i32 {
     let mut numbers: Vec<i32> = (0..256).collect();
     let mut current_position = 0;
     let mut skip_size = 0;
@@ -15,7 +16,7 @@ aoc!(2017, 10, 1, |input| {
     }
 
     numbers[0] * numbers[1]
-});
+}
 
 fn reverse(data: &mut Vec<i32>, mut start: usize, len: usize) {
     if len == 0 {

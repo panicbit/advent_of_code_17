@@ -3,7 +3,8 @@ extern crate aoc;
 
 use std::collections::{HashMap,HashSet};
 
-aoc!(2017, 12, 1, |input| {
+#[aoc(2017, 12, 1)]
+fn main(input: &str) -> usize {
     let pipes = input.lines().map(|line| {
         let mut line = line.trim().split(" <-> ");
         let first = parse_int(line.next().unwrap());
@@ -18,7 +19,7 @@ aoc!(2017, 12, 1, |input| {
     visit_group(0, &pipes, &mut visited);
 
     visited.len()
-});
+}
 
 fn visit_group(program: i32, pipes: &HashMap<i32, Vec<i32>>, visited: &mut HashSet<i32>) {
     if visited.contains(&program) {

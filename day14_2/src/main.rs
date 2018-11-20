@@ -5,7 +5,8 @@ extern crate itertools;
 use itertools::Itertools;
 use std::collections::HashSet;
 
-aoc!(2017, 14, 2, |input| {
+#[aoc(2017, 14, 2)]
+fn main(input: &str) -> usize {
     let input = input.trim();
     let mut to_check = (0..128)
         .flat_map(|row|
@@ -25,7 +26,7 @@ aoc!(2017, 14, 2, |input| {
     }
 
     count
-});
+}
 
 fn check(coord: (isize, isize), to_check: &mut HashSet<(isize,isize)>) {
     if !to_check.contains(&coord) {

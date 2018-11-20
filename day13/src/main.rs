@@ -1,7 +1,8 @@
 #[macro_use]
 extern crate aoc;
 
-aoc!(2017, 13, 1, |input| {
+#[aoc(2017, 13, 1)]
+fn main(input: &str) -> isize {
     let layers = input.lines().map(Layer::from_str).collect::<Vec<_>>();
     let mut severity = 0;
 
@@ -14,7 +15,7 @@ aoc!(2017, 13, 1, |input| {
     }
 
     severity
-});
+}
 
 #[derive(Debug,Clone)]
 struct Layer {

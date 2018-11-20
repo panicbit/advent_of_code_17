@@ -5,6 +5,4 @@ version = "0.1.0"
 
 [dependencies]
 regex = "0.2.3"
-
-[dependencies.aoc]
-git = "https://github.com/panicbit/aoc"
+aoc = "0.3"

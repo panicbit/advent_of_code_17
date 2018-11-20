@@ -3,7 +3,8 @@ extern crate aoc;
 
 use std::cmp::max;
 
-aoc!(2017, 11, 2, |input| {
+#[aoc(2017, 11, 2)]
+fn main(input: &str) -> i32 {
     let steps = input.trim().split(',').map(Dir::from_str);
     let mut pos = HexPos::default();
     let mut max_dist = 0;
@@ -14,7 +15,7 @@ aoc!(2017, 11, 2, |input| {
     }
     
     max_dist
-});
+}
 
 #[derive(Default,Copy,Clone)]
 struct HexPos {

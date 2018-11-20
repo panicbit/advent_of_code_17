@@ -5,13 +5,14 @@ use std::str::FromStr;
 use std::collections::HashMap;
 use std::iter::once;
 
-aoc!(2017, 19, 1, |input| {
+#[aoc(2017, 19, 1)]
+fn main(input: &str) -> String {
     let maze = input.parse::<Maze>().unwrap();
 
     MazeIter::new(&maze)
         .filter(|ch| ch.is_alphabetic())
         .collect::<String>()
-});
+}
 
 struct MazeIter<'a> {
     maze: &'a Maze,

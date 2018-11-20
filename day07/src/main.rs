@@ -1,10 +1,11 @@
-#[macro_use]
+     #[macro_use]
 extern crate aoc;
 extern crate regex;
 
 use regex::Regex;
 
-aoc!(2017, 07, 1, |input| {
+#[aoc(2017, 07, 1)]
+fn main(input: &str) -> String {
     let re = r"(?P<name>\w+) \((?P<val>\d+)\)( -> (?P<carried>.*))?";
     let re = Regex::new(re).unwrap();
 
@@ -35,7 +36,7 @@ aoc!(2017, 07, 1, |input| {
         .expect("bottom not found");
 
     bottom.name.to_string()
-});
+}
 
 #[derive(Debug,Clone)]
 struct Tower<'a> {

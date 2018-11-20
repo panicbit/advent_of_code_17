@@ -1,7 +1,8 @@
 #[macro_use]
 extern crate aoc;
 
-aoc!(2017, 13, 2, |input| {
+#[aoc(2017, 13, 2)]
+fn main(input: &str) -> isize {
     let layers = input.lines().map(Layer::from_str).collect::<Vec<_>>();
 
     let mut delay = 0;
@@ -10,7 +11,7 @@ aoc!(2017, 13, 2, |input| {
     }
 
     delay
-});
+}
 
 fn gets_caught(layers: &Vec<Layer>, delay: isize) -> bool {
     for layer in layers {

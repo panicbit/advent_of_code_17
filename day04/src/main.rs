@@ -1,11 +1,11 @@
+#[macro_use] extern crate aoc;
 extern crate itertools;
 
 use itertools::Itertools;
 
-fn main() {
-    let input = include_str!("../input.txt");
-
-    let res = input.lines().map(|line| {
+#[aoc(2017, 4, 1)]
+fn main(input: &str) -> usize {
+    input.lines().map(|line| {
         line.trim()
             .split_whitespace()
             .sorted()
@@ -15,7 +15,5 @@ fn main() {
             .all(|(_, dupes)| dupes.count() == 1)
     })
     .filter(|&valid| valid)
-    .count();
-
-    println!("{}", res);
+    .count()
 }

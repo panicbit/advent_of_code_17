@@ -1,7 +1,10 @@
-fn main() {
-    let input = include_str!("../input.txt").trim();
+#[macro_use] extern crate aoc;
+
+#[aoc(2017, 1, 2)]
+fn main(input: &str) -> u32 {
     let mut sum = 0;
     let digits: Vec<u32> = input
+        .trim()
         .chars()
         .map(|c| c.to_digit(10).unwrap())
         .collect();
@@ -13,5 +16,5 @@ fn main() {
         }
     }
 
-    println!("{}", sum);
+    sum
 }

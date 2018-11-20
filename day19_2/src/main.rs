@@ -5,11 +5,12 @@ use std::str::FromStr;
 use std::collections::HashMap;
 use std::iter::once;
 
-aoc!(2017, 19, 2, |input| {
+#[aoc(2017, 19, 2)]
+fn main(input: &str) -> usize {
     let maze = input.parse::<Maze>().unwrap();
 
     MazeIter::new(&maze).count()
-});
+}
 
 struct MazeIter<'a> {
     maze: &'a Maze,

@@ -1,7 +1,8 @@
 #[macro_use]
 extern crate aoc;
 
-aoc!(2017, 20, 1, |input| {
+#[aoc(2017, 20, 1)]
+fn main(input: &str) -> usize {
     let particles = input.lines().map(Particle::from_str).collect::<Vec<_>>();
 
     particles
@@ -10,7 +11,7 @@ aoc!(2017, 20, 1, |input| {
         .min_by_key(|&(_, p)| p.acceleration.dist())
         .map(|(i, _)| i)
         .unwrap()
-});
+}
 
 #[derive(Debug)]
 struct Particle {

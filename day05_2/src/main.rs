@@ -1,7 +1,8 @@
 #[macro_use]
 extern crate aoc;
 
-aoc!(2017, 05, 2, |input| {
+#[aoc(2017, 05, 2)]
+fn main(input: &str) -> i32 {
     let mut ip: i32 = 0;
     let mut steps = 0;
     let mut instructions = input
@@ -22,4 +23,4 @@ aoc!(2017, 05, 2, |input| {
     }
 
     steps
-});
+}

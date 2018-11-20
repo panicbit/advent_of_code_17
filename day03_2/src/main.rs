@@ -1,8 +1,11 @@
+#[macro_use] extern crate aoc;
+
 use std::collections::HashMap;
 use self::Direction::*;
 
-fn main() {
-    let input = 325489;
+#[aoc(2017, 3, 2)]
+fn main(input: &str) -> i32 {
+    let input = input.parse::<i32>().unwrap();
     let mut dir = Direction::E;
     let mut x: i32 = 0;
     let mut y: i32 = 0;
@@ -29,8 +32,7 @@ fn main() {
             values.insert((x, y), value);
 
             if value > input {
-                println!("{}", values[&(x, y)]); 
-                return;
+                return values[&(x, y)];
             }
 
             match dir {

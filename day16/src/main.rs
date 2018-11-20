@@ -1,7 +1,8 @@
 #[macro_use]
 extern crate aoc;
 
-aoc!(2017, 16, 1, |input| {
+#[aoc(2017, 16, 1)]
+fn main(input: &str) -> String {
     let mut programs = "abcdefghijklmnop".chars().collect::<Vec<_>>();
     input.trim()
         .split(',')
@@ -9,7 +10,7 @@ aoc!(2017, 16, 1, |input| {
         .for_each(|mov| mov.execute(&mut programs));
 
     programs.into_iter().collect::<String>()
-});
+}
 
 enum Move {
     Spin(usize),

@@ -4,13 +4,14 @@ extern crate itertools;
 
 use itertools::Itertools;
 
-aoc!(2017, 14, 1, |input| {
+#[aoc(2017, 14, 1)]
+fn main(input: &str) -> usize {
     let input = input.trim();
     (0..128)
         .flat_map(|row| knot_hash(&format!("{}-{}", input, row)))
         .filter(|&used| used)
         .count()
-});
+}
 
 
 fn knot_hash(input: &str) -> Vec<bool> {
