@@ -20,10 +20,11 @@ for day in `seq -f "%02.f" $start $end`; do
 #[macro_use] extern crate aoc;
 
 #[aoc($event, $day, $part)]
-fn main() -> i32 {
+fn main(input: &str) -> i32 {
     unimplemented!()
 }
 EOF
-        )
+        )&
     done
 done
+wait
